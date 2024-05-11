@@ -14,6 +14,10 @@ const entradaSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    nota: {
+      type: String,
+      default: "",
+    },
     date: {
       type: Date,
       default: Date.now,

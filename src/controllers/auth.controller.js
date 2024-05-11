@@ -72,8 +72,8 @@ export const login = async (req, res) => {
     });
 
     res.cookie("token", token, {
-      // httpOnly: process.env.NODE_ENV !== "development",
-      httpOnly: true,
+      httpOnly: process.env.NODE_ENV !== "development",
+      // httpOnly: true,
       secure: true,
       sameSite: "none",
     });

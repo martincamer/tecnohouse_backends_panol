@@ -10,6 +10,10 @@ const ventaSchema = new mongoose.Schema(
       type: Object,
       default: {},
     },
+    nota: {
+      type: String,
+      default: "",
+    },
     date: {
       type: Date,
       default: Date.now,

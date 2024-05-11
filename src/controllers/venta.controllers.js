@@ -143,7 +143,7 @@ export const getVenta = async (req, res) => {
 
 export const createVenta = async (req, res) => {
   try {
-    const { productos, cliente } = req.body;
+    const { productos, cliente, nota } = req.body;
 
     // Validar el ObjectId del cliente
     if (!mongoose.Types.ObjectId.isValid(cliente.id)) {
@@ -202,6 +202,7 @@ export const createVenta = async (req, res) => {
     const nuevaVenta = new Venta({
       productos,
       cliente,
+      nota,
       user: req.user.id,
     });
 
@@ -434,7 +435,7 @@ export const deleteVenta = async (req, res) => {
 
 export const createEntrada = async (req, res) => {
   try {
-    const { proveedor_factura, numero_factura, productos } = req.body;
+    const { proveedor_factura, numero_factura, productos, nota } = req.body;
 
     // Verificar ObjectIds de productos
     const productoIds = productos.map((producto) => {
@@ -477,6 +478,7 @@ export const createEntrada = async (req, res) => {
       proveedor_factura,
       numero_factura,
       productos,
+      nota,
       user: req.user.id,
     });
 
