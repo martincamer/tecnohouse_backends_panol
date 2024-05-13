@@ -71,9 +71,14 @@ export const login = async (req, res) => {
       username: userFound.username,
     });
 
+    // res.cookie("token", token, {
+    //   httpOnly: process.env.NODE_ENV !== "development",
+    //   secure: true,
+    //   sameSite: "none",
+    // });
+
     res.cookie("token", token, {
       httpOnly: process.env.NODE_ENV !== "development",
-      // httpOnly: true,
       secure: true,
       sameSite: "none",
     });
