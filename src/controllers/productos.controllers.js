@@ -92,6 +92,33 @@ export const updateProductos = async (req, res) => {
   }
 };
 
+export const updateProductoStock = async (req, res) => {
+  try {
+    const { stock } = req.body;
+    const productId = req.params.id;
+    const userId = req.user.id; // Obtiene el ID del usuario autenticado desde el middleware de autenticación
+
+    // Verifica si el producto pertenece al usuario autenticado
+    const producto = await Producto.findOne({ _id: productId, user: userId });
+
+    if (!producto) {
+      return res
+        .status(404)
+        .json({ message: "Producto no encontrado o no autorizado" });
+    }
+
+    // Actualiza el stock del producto
+    producto.stock = stock;
+    await producto.save();
+
+    // Recupera todos los productos del usuario después de actualizar
+    const allProducts = await Producto.find({ user: userId }).populate("user");
+
+    return res.json(allProducts);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getProducto = async (req, res) => {
   try {
     const task = await Producto.findById(req.params.id);

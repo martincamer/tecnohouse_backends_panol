@@ -4,6 +4,7 @@ import {
   deleteProductos,
   getProducto,
   getProductos,
+  updateProductoStock,
   updateProductos,
 } from "../controllers/productos.controllers.js";
 import { auth } from "../middlewares/auth.middleware.js";
@@ -24,6 +25,8 @@ router.post(
 router.get("/productos/:id", auth, getProducto);
 
 router.put("/productos/:id", auth, updateProductos);
+
+router.put("/producto-stock/:id", auth, updateProductoStock);
 
 router.delete("/productos/:id", auth, deleteProductos);
 
