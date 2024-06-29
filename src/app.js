@@ -6,6 +6,8 @@ import categoriasRoutes from "./routes/categorias.routes.js";
 import coloresRoutes from "./routes/colores.routes.js";
 import clientesRoutes from "./routes/clientes.routes.js";
 import ventasRoutes from "./routes/venta.routes.js";
+import cajonRoutes from "./routes/cajon.routes.js";
+import cajonSalidaRoutes from "./routes/cajonSalidas.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -52,6 +54,8 @@ app.use("/api", categoriasRoutes);
 app.use("/api", coloresRoutes);
 app.use("/api", clientesRoutes);
 app.use("/api", ventasRoutes);
+app.use("/api", cajonRoutes);
+app.use("/api", cajonSalidaRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const path = await import("path");
