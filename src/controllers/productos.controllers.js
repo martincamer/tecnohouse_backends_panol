@@ -54,10 +54,45 @@ export const deleteProductos = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+// export const updateProductos = async (req, res) => {
+//   try {
+//     const {
+//       codigo,
+//       detalle,
+//       imagen,
+//       color,
+//       categoria,
+//       tipo,
+//       stock,
+//       stock_minimo,
+//       stock_maximo,
+//       date,
+//     } = req.body;
 
+//     const productoUpdated = await Producto.findOneAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         codigo,
+//         detalle,
+//         imagen,
+//         color,
+//         categoria,
+//         tipo,
+//         stock,
+//         stock_minimo,
+//         stock_maximo,
+//         date,
+//       },
+//       { new: true }
+//     );
+//     return res.json(productoUpdated);
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// };
 export const updateProductos = async (req, res) => {
   try {
-    const {
+    let {
       codigo,
       detalle,
       imagen,
@@ -69,6 +104,14 @@ export const updateProductos = async (req, res) => {
       stock_maximo,
       date,
     } = req.body;
+
+    // Convertir los valores de los campos String a mayúsculas
+    codigo = codigo?.toUpperCase();
+    detalle = detalle?.toUpperCase();
+    imagen = imagen?.toUpperCase();
+    color = color?.toUpperCase();
+    categoria = categoria?.toUpperCase();
+    tipo = tipo?.toUpperCase();
 
     const productoUpdated = await Producto.findOneAndUpdate(
       { _id: req.params.id },
@@ -86,6 +129,7 @@ export const updateProductos = async (req, res) => {
       },
       { new: true }
     );
+
     return res.json(productoUpdated);
   } catch (error) {
     return res.status(500).json({ message: error.message });

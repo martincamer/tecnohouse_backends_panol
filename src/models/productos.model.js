@@ -52,4 +52,15 @@ const productosSchema = new mongoose.Schema(
   }
 );
 
+// Middleware para convertir los valores en mayúsculas antes de guardar
+productosSchema.pre("save", function (next) {
+  this.codigo = this.codigo.toUpperCase();
+  this.detalle = this.detalle.toUpperCase();
+  this.color = this.color.toUpperCase();
+  this.categoria = this.categoria.toUpperCase();
+  this.tipo = this.tipo.toUpperCase();
+
+  next();
+});
+
 export default mongoose.model("Producto", productosSchema);
